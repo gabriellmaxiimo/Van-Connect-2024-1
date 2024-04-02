@@ -1,17 +1,20 @@
-# Nome do projeto
-Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
+# Buscan de Vans Escolares e Universitárias (Site Van Connect)
+
+Com o aumento da demanda por serviços de transporte escolar e universitário, é essencial uma plataforma que facilite e centralize a comunicação e a resolução de questões burocráticas entre motoristas e clientes. Desde sempre, encontrar um motorista é uma tarefa demorada que envolve diversos fatores como disponibilidade do motorista, encontrar motoristas próximos, segurança, pagamentos, burocracia contratual e satisfação do cliente. Portanto, o objetivo do projeto é aprimorar e agilizar o contato entre os envolvidos.
 
 ## Alunos integrantes da equipe
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* David Olinda Pomine
+* Gabriel Máximo de Castro
+* Rafael Costa Fiorentini
+* Sarah Guimarães Costa
+* Yago da Mata Silva
 
 ## Professores responsáveis
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Daniel Machado Osório Pereira
+* Josiane da Costa Vieira Rezende
+
 
 ## Instruções de utilização
 
