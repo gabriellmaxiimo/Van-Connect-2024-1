@@ -1,0 +1,101 @@
+/* Coded with love by Mutiullah Samim */
+
+.user_card {
+	margin-top: 70px !important;
+	height: 400px;
+	width: 350px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #fff;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 5px;
+}
+.brand_logo_container {
+	position: absolute;
+	height: 170px;
+	width: 170px;
+	border-radius: 50%;
+	background: #60a3bc;
+	padding: 10px;
+	text-align: center;
+}
+.brand_logo {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
+
+.login_btn {
+	width: 100%;
+	background: #FECC49 !important;
+	color: black !important;
+}
+.login_btn:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
+.login_container {
+	padding: 0 2rem;
+}
+.input-group-text {
+	background: #FECC49 !important;
+	color: black !important;
+	border: 0 !important;
+	border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+
+.input_user,
+.input_pass:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+	background-color: #FECC49 !important;
+}
+
+#iconeUser{
+  height: 40px !important;
+  width: 40px !important;
+}
+
+#iconeSenha{
+  height: 40px !important;
+  width: 40px !important;
+}
+
+#iconeUser i{
+  margin-left: 1.8px !important;
+}
+
+#iconeSenha i{
+  text-align: center !important;
+}
+
+#iconeVerSenha{
+  cursor: pointer;
+  height: 4px !important;
+  background: white !important;	
+  margin-top: 12px !important;
+  margin-left: 3px !important;
+  z-index: 999;
+}
+
+#msgErro{
+  text-align: center;
+  color: #ff0000;
+  background-color: #ffbbbb;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+  display: none;
+}
