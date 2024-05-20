@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     img.src = e.target.result;
-                    motoristaData.imgSrc = e.target.result;  // Save the image source in the data object
+                    motoristaData.imgSrc = e.target.result;  
                     salvarDadosLocalStorage();
                 };
                 reader.readAsDataURL(file);
@@ -316,4 +316,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
 
