@@ -194,10 +194,15 @@ footer a.btn_footer{
 }
 document.addEventListener('DOMContentLoaded', function() {
     var img = document.querySelector('.zoom');
-    var originalValues = {};
+    var motoristaData = {
+        nome: '',
+        idade: '',
+        whatsapp: '',
+        outrosDados: {}
+    };
 
     function salvarDadosLocalStorage() {
-        localStorage.setItem('motoristaData', JSON.stringify(originalValues));
+        localStorage.setItem('motoristaData', JSON.stringify(motoristaData));
     }
 
     function limparLocalStorage() {
@@ -214,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     img.src = e.target.result;
+                    motoristaData.imgSrc = e.target.result;  // Save the image source in the data object
+                    salvarDadosLocalStorage();
                 };
                 reader.readAsDataURL(file);
             }
@@ -226,12 +233,10 @@ document.addEventListener('DOMContentLoaded', function() {
     motoristaDivs.forEach(function(div) {
         div.addEventListener('click', function() {
             var novoTexto = prompt("Digite:", this.querySelector('span').textContent);
-            if (novoTexto !== null) {
-                if (novoTexto.trim() !== '') {
-                    this.querySelector('span').textContent = novoTexto;
-                    originalValues[div.id] = novoTexto;
-                    salvarDadosLocalStorage();
-                }
+            if (novoTexto !== null && novoTexto.trim() !== '') {
+                this.querySelector('span').textContent = novoTexto;
+                motoristaData.outrosDados[div.id] = novoTexto;
+                salvarDadosLocalStorage();
             } else {
                 alert("Por favor, insira uma informação válida.");
             }
@@ -241,12 +246,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var nameHeader = document.querySelector('h1');
     nameHeader.addEventListener('click', function() {
         var novoTexto = prompt("Digite o nome:", this.textContent);
-        if (novoTexto !== null) {
-            if (novoTexto.trim() !== '') {
-                this.textContent = novoTexto;
-                originalValues.nome = novoTexto;
-                salvarDadosLocalStorage();
-            }
+        if (novoTexto !== null && novoTexto.trim() !== '') {
+            this.textContent = novoTexto;
+            motoristaData.nome = novoTexto;
+            salvarDadosLocalStorage();
         } else {
             alert("Por favor, insira um nome válido.");
         }
@@ -254,49 +257,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var idadeDiv = document.querySelector('#idadeMotorista');
     idadeDiv.addEventListener('click', function() {
-        var novoTexto = prompt("Digite a idade:", originalValues.idade || "");
-        if (novoTexto !== null) {
-            if (!isNaN(novoTexto.trim()) && novoTexto.trim() !== '') {
-                this.querySelector('span').textContent = novoTexto;
-                originalValues.idade = novoTexto;
-                salvarDadosLocalStorage();
-            } else {
-                alert("Por favor, insira um número válido para a idade.");
-            }
+        var novoTexto = prompt("Digite a idade:", motoristaData.idade || "");
+        if (novoTexto !== null && !isNaN(novoTexto.trim()) && novoTexto.trim() !== '') {
+            this.querySelector('span').textContent = novoTexto;
+            motoristaData.idade = novoTexto;
+            salvarDadosLocalStorage();
+        } else {
+            alert("Por favor, insira um número válido para a idade.");
         }
     });
 
     var whatsappDiv = document.querySelector('#whatsappMotorista');
     whatsappDiv.addEventListener('click', function() {
-        var novoTexto = prompt("Digite o número do WhatsApp:", originalValues.whatsapp || "");
-        if (novoTexto !== null) {
-            if (!isNaN(novoTexto.trim()) && novoTexto.trim() !== '') {
-                this.querySelector('span').textContent = novoTexto;
-                originalValues.whatsapp = novoTexto;
-                salvarDadosLocalStorage();
-            } else {
-                alert("Por favor, insira apenas números para o WhatsApp.");
-            }
+        var novoTexto = prompt("Digite o número do WhatsApp:", motoristaData.whatsapp || "");
+        if (novoTexto !== null && !isNaN(novoTexto.trim()) && novoTexto.trim() !== '') {
+            this.querySelector('span').textContent = novoTexto;
+            motoristaData.whatsapp = novoTexto;
+            salvarDadosLocalStorage();
+        } else {
+            alert("Por favor, insira apenas números para o WhatsApp.");
         }
     });
 
     var clearButton = document.getElementById('clearButton');
     clearButton.addEventListener('click', function() {
         limparLocalStorage();
-        originalValues = {};
+        motoristaData = {
+            nome: '',
+            idade: '',
+            whatsapp: '',
+            outrosDados: {}
+        };
         document.location.reload(true);
     });
 
     var dadosLocalStorage = localStorage.getItem('motoristaData');
     if (dadosLocalStorage) {
-        originalValues = JSON.parse(dadosLocalStorage);
-        for (var key in originalValues) {
-            if (originalValues.hasOwnProperty(key)) {
+        motoristaData = JSON.parse(dadosLocalStorage);
+        if (motoristaData.nome) {
+            document.querySelector('h1').textContent = motoristaData.nome;
+        }
+        if (motoristaData.idade) {
+            document.querySelector('#idadeMotorista span').textContent = motoristaData.idade;
+        }
+        if (motoristaData.whatsapp) {
+            document.querySelector('#whatsappMotorista span').textContent = motoristaData.whatsapp;
+        }
+        if (motoristaData.imgSrc) {
+            img.src = motoristaData.imgSrc;
+        }
+        for (var key in motoristaData.outrosDados) {
+            if (motoristaData.outrosDados.hasOwnProperty(key)) {
                 var element = document.getElementById(key);
                 if (element) {
-                    element.querySelector('span').textContent = originalValues[key];
+                    element.querySelector('span').textContent = motoristaData.outrosDados[key];
                 }
             }
         }
     }
 });
+
