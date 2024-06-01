@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback dos Usuários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <img src="assets/img/logo.png" alt="Logomarca Vans Connect" width="60px" height="60px">
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Motorista 1 - Avaliações dos Usuários</h1>
+        <div class="motorista">
+            <img id="motorista" src="assets/img/image_preview.jpg" alt="Imagem do Produto">
+        </div>
+
+        <div id="media-avaliacoes">
+            <h2>Média das Avaliações: <span id="media-nota">N/A</span> <small>/ 5</small></h2>
+        </div>
+
+        <div id="avaliacoes"></div>
+        <form id="form-avaliacao">
+            <h2>Adicionar Avaliação</h2>
+            <label for="nota">Nota:</label>
+            <select id="nota" required>
+                <option value="1">1 estrela</option>
+                <option value="2">2 estrelas</option>
+                <option value="3">3 estrelas</option>
+                <option value="4">4 estrelas</option>
+                <option value="5">5 estrelas</option>
+            </select>
+            <label for="comentario">Comentário:</label>
+            <textarea id="comentario" rows="4" required></textarea>
+            <button type="submit">Adicionar Avaliação</button>
+        </form>
+        <button id="botao-principal">Voltar à Página Principal</button>
+    </div>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <center>
+                        <p style="font-size: 13px;" id="Copyright">Copyright - Todos os direitos reservados a Van
+                            Connect</p>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
