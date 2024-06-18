@@ -13,7 +13,7 @@ Com o aumento da demanda por serviços de transporte escolar e universitário, �
 ## Professores responsáveis
 
 * Daniel Machado Osório Pereira
-* Josiane da Costa Vieira Rezende
+* Luiz Henrique da Costa Silva
 
 
 ## Instruções de utilização
