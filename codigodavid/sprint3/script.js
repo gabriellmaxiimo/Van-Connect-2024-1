@@ -32,3 +32,6 @@ document.getElementById('deleteButton').addEventListener('click', function () {
     };
     loadData(emptyData);
 });
+function goBack() {
+    window.history.back();
+}

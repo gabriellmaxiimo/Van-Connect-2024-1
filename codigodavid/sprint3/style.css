@@ -106,3 +106,19 @@ footer a.btn_footer:hover {
 #Copyright {
     margin-top: 12px !important;
 }
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #0b1118;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.back-button i {
+    margin-right: 5px;
+}
