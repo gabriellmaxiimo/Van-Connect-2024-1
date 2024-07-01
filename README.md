@@ -18,4 +18,6 @@ Com o aumento da demanda por serviços de transporte escolar e universitário, �
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Link do site hospedado: https://668208f1caa5b7ab9df0db9e--ephemeral-ganache-91e520.netlify.app/
+
+Para utilizar o site, você deve criar um cadastro de usuário e um de motorista, para depois fazer login em cada uma das contas e poder acessar as funcionalidades. As telas de admnistrador são acessadas apenas pelos integrantes do grupo.
