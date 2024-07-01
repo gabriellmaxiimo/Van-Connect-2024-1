@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>Van Connect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="assets/css/cadastro.css" rel="stylesheet" media="all">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+          <img src="assets/img/logo.png" alt="Logomarca Vans Connect" width="60px" height="60px">
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- Cadastro de Usuários -->
+      <div class="container-fluid cadastroUsuario" id="grad1">
+          <div class="row justify-content-center mt-0">
+              <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                  <button id="CadastrarComoMotorista" onclick="paginaMotorista()">Cadastrar-se como Motorista</button>
+                  <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                      <div class="row">
+                          <div class="col-md-12 mx-0">
+                              <form id="msform">
+                                  <!-- progressbar -->
+                                  <ul id="progressbar">
+                                      <li class="active" id="acesso_icone"><strong>Acesso</strong></li>
+                                      <li id="pessoal_icone"><strong>Pessoal</strong></li>
+                                      <li id="endereco_icone"><strong>Endereço</strong></li>
+                                      <li id="dependente_icone"><strong>Dependente</strong></li>
+                                      <li id="confirm_icone"><strong>Finish</strong></li>
+                                  </ul>
+                                  <!-- fieldsets -->
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Acesso</h2>
+                                          <input type="email" name="email_CadastroUsuario" id="email_CadastroUsuario" placeholder="*  Email..."/>
+                                          <span class="msgErro" id="msgErro_email_CadastroUsuario"></span>
+                                          <input type="password" name="senha_CadastroUsuario" id="senha_CadastroUsuario" placeholder="*  Senha..."/>
+                                          <span class="msgErro" id="msgErro_senha_CadastroUsuario"></span>
+                                          <input type="password" name="confirmarsenha_CadastroUsuario" id="confirmarsenha_CadastroUsuario" placeholder="*  Confirmar Senha..."/>
+                                          <span class="msgErro" id="msgErro_confirmarsenha_CadastroUsuario"></span>
+                                      </div>
+                                      <input type="button" name="next" class="next action-button" id="ProximoUsuario1" value="Próxima"/>
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Pessoal</h2>
+                                          <input type="text" name="cpf_CadastroUsuario" id="cpf_CadastroUsuario" placeholder="*  CPF" mask="###.###.###-88" />
+                                          <span class="msgErro" id="msgErro_cpf_CadastroUsuario"></span>
+                                          <input type="text" name="nome_CadastroUsuario" id="nome_CadastroUsuario" placeholder="*  Nome Completo"/>
+                                          <span class="msgErro" id="msgErro_nome_CadastroUsuario"></span>
+                                          <div class="row">
+                                            <div class="col-7">
+                                              <label for="nascimento_CadastroUsuario">&nbsp&nbsp* &nbspNascimento</label>
+                                              <input type="date" name="nascimento_CadastroUsuario" id="nascimento_CadastroUsuario"/>
+                                              <span class="msgErro" id="msgErro_nascimento_CadastroUsuario"></span>
+                                            </div>
+                                            <div class="col-5">
+                                              <label for="telefone_CadastroUsuario">&nbsp</label>
+                                              <input type="text" name="telefone_CadastroUsuario" id="telefone_CadastroUsuario" placeholder="*  Contato"/>
+                                              <span class="msgErro" id="msgErro_telefone_CadastroUsuario"></span>
+                                            </div>
+                                            
+                                          </div>
+                                      </div>
+                                      <input type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                                      <input type="button" name="next" class="next action-button" id="ProximoUsuario2" value="Próxima"/>
+
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Endereço</h2>
+                                          <div class="row">
+                                          <div class="col-4">
+                                            <input type="text" name="cep_CadastroUsuario" id="cep_CadastroUsuario" placeholder="*  CEP"/>
+                                            <span class="msgErro" id="msgErro_cep_CadastroUsuario"></span>
+                                          </div>
+                                          <div class="col-8">
+                                            <input type="text" name="logradouro_CadastroUsuario" id="logradouro_CadastroUsuario" placeholder="*  Logradouro"/>
+                                            <span class="msgErro" id="msgErro_logradouro_CadastroUsuario"></span>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                          <div class="col-4">
+                                            <input type="number" name="numero_CadastroUsuario" id="numero_CadastroUsuario" placeholder="*  Número"/>
+                                            <span class="msgErro" id="msgErro_numero_CadastroUsuario"></span>
+                                          </div>
+                                          <div class="col-8">
+                                            <input type="text" name="complemento_CadastroUsuario" id="complemento_CadastroUsuario" placeholder="*  Complemento"/>
+                                            <span class="msgErro" id="msgErro_complemento_CadastroUsuario"></span>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                          <div class="col-4">
+                                            <input type="text" name="bairro_CadastroUsuario" id="bairro_CadastroUsuario" placeholder="*  Bairro"/>
+                                            <span class="msgErro" id="msgErro_bairro_CadastroUsuario"></span>
+                                          </div>
+                                          <div class="col-8">
+                                            <input type="text" name="cidade_CadastroUsuario" id="cidade_CadastroUsuario" placeholder="*  Cidade"/>
+                                            <span class="msgErro" id="msgErro_cidade_CadastroUsuario"></span>
+                                          </div>
+                                          </div>                                    
+                                      </div>
+                                      <input type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                                      <input type="button" name="next" class="next action-button" id="ProximoUsuario3" value="Próxima"/>
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Dependente?</h2>
+                                          <input type="text" name="cpfDependente_CadastroUsuario" id="cpfDependente_CadastroUsuario" placeholder="CPF"/>
+                                          <span class="msgErro" id="msgErro_cpfDependente_CadastroUsuario"></span>
+                                          <input type="text" name="nomeDependente_CadastroUsuario" id="nomeDependente_CadastroUsuario" placeholder="Nome"/>
+                                          <span class="msgErro" id="msgErro_nomeDependente_CadastroUsuario"></span>
+                                          <div class="row">
+                                            <div class="col-7">
+                                              <label for="nascimentoDependente_CadastroUsuario">&nbsp&nbspNascimento</label>
+                                              <input type="date" name="nascimentoDependente_CadastroUsuario" id="nascimentoDependente_CadastroUsuario"/>
+                                              <span class="msgErro" id="msgErro_nascimentoDependente_CadastroUsuario"></span>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <input type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                                      <input type="button" name="CadastrarUsuario" class="next action-button" id="CadastrarUsuario" onclick="cadastrar_Usuario()" value="Cadastrar"/>
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title text-center">Sucesso</h2>
+                                          <br><br>
+                                          <div class="row justify-content-center">
+                                              <div class="col-3">
+                                                  <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                              </div>
+                                          </div>
+                                          <br><br>
+                                          <div class="row justify-content-center">
+                                              <div class="col-7 text-center">
+                                                  <h5>Seu cadastro está completo!</h5>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </fieldset>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
+      <!-- Cadastro de Motoristas -->
+      <div class="container-fluid cadastroMotorista" id="grad1">
+          <div class="row justify-content-center mt-0">
+              <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                  <button id="CadastrarComoUsuario" onclick="paginaUsuario()">Cadastrar-se como Usuário</button>
+                  <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                      <div class="row">
+                          <div class="col-md-12 mx-0">
+                              <form id="msform">
+                                  <!-- progressbar -->
+                                  <ul id="progressbar">
+                                      <li class="active" id="acesso_icone"><strong>Acesso</strong></li>
+                                      <li id="pessoal_icone"><strong>Pessoal</strong></li>
+                                      <li id="endereco_icone"><strong>Endereço</strong></li>
+                                      <li id="veiculo_icone"><strong>Veículo</strong></li>
+                                      <li id="confirm_icone"><strong>Finish</strong></li>
+                                  </ul>
+                                  <!-- fieldsets -->
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Acesso</h2>
+                                          <input type="email" name="email_CadastroMotorista" id="email_CadastroMotorista" placeholder="*  Email..."/>
+                                          <span class="msgErro" id="msgErro_email_CadastroMotorista"></span>
+                                          <input type="password" name="senha_CadastroMotorista" id="senha_CadastroMotorista" placeholder="*  Senha..."/>
+                                          <span class="msgErro" id="msgErro_senha_CadastroMotorista"></span>
+                                          <input type="password" name="confirmarsenha_CadastroMotorista" id="confirmarsenha_CadastroMotorista" placeholder="*  Confirmar Senha..."/>
+                                          <span class="msgErro" id="msgErro_confirmarsenha_CadastroMotorista"></span>
+                                      </div>
+                                      <input type="button" name="next" class="next action-button" id="ProximoMotorista1" value="Próxima"/>
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Pessoal</h2>
+                                          <input type="text" name="cpf_CadastroMotorista" id="cpf_CadastroMotorista" placeholder="*  CPF" mask="###.###.###-88" />
+                                          <span class="msgErro" id="msgErro_cpf_CadastroMotorista"></span>
+                                          <input type="text" name="nome_CadastroMotorista" id="nome_CadastroMotorista" placeholder="*  Nome Completo"/>
+                                          <span class="msgErro" id="msgErro_nome_CadastroMotorista"></span>
+                                          <div class="row">
+                                            <div class="col-7">
+                                              <label for="nascimento_CadastroMotorista">&nbsp&nbsp* &nbspNascimento</label>
+                                              <input type="date" name="nascimento_CadastroMotorista" id="nascimento_CadastroMotorista"/>
+                                              <span class="msgErro" id="msgErro_nascimento_CadastroMotorista"></span>
+                                            </div>
+                                            <div class="col-5">
+                                              <label for="telefone_CadastroMotorista">&nbsp</label>
+                                              <input type="text" name="telefone_CadastroMotorista" id="telefone_CadastroMotorista" placeholder="*  Contato"/>
+                                              <span class="msgErro" id="msgErro_telefone_CadastroMotorista"></span>
+                                            </div>
+                                            
+                                          </div>
+                                      </div>
+                                      <input type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                                      <input type="button" name="next" class="next action-button" id="ProximoMotorista2" value="Próxima"/>
+
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Endereço</h2>
+                                          <div class="row">
+                                          <div class="col-4">
+                                            <input type="text" name="cep_CadastroMotorista" id="cep_CadastroMotorista" placeholder="*  CEP"/>
+                                            <span class="msgErro" id="msgErro_cep_CadastroMotorista"></span>
+                                          </div>
+                                          <div class="col-8">
+                                            <input type="text" name="logradouro_CadastroMotorista" id="logradouro_CadastroMotorista" placeholder="*  Logradouro"/>
+                                            <span class="msgErro" id="msgErro_logradouro_CadastroMotorista"></span>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                          <div class="col-4">
+                                            <input type="number" name="numero_CadastroMotorista" id="numero_CadastroMotorista" placeholder="*  Número"/>
+                                            <span class="msgErro" id="msgErro_numero_CadastroMotorista"></span>
+                                          </div>
+                                          <div class="col-8">
+                                            <input type="text" name="complemento_CadastroMotorista" id="complemento_CadastroMotorista" placeholder="*  Complemento"/>
+                                            <span class="msgErro" id="msgErro_complemento_CadastroMotorista"></span>
+                                          </div>
+                                          </div>
+                                          <div class="row">
+                                          <div class="col-4">
+                                            <input type="text" name="bairro_CadastroMotorista" id="bairro_CadastroMotorista" placeholder="*  Bairro"/>
+                                            <span class="msgErro" id="msgErro_bairro_CadastroMotorista"></span>
+                                          </div>
+                                          <div class="col-8">
+                                            <input type="text" name="cidade_CadastroMotorista" id="cidade_CadastroMotorista" placeholder="*  Cidade"/>
+                                            <span class="msgErro" id="msgErro_cidade_CadastroMotorista"></span>
+                                          </div>
+                                          </div>                                    
+                                      </div>
+                                      <input type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                                      <input type="button" name="next" class="next action-button" id="ProximoMotorista3" value="Próxima"/>
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title">Veículo</h2>
+                                          <input type="text" name="modeloVeiculo_CadastroMotorista" id="modeloVeiculo_CadastroMotorista" placeholder="Modelo"/>
+                                          <span class="msgErro" id="msgErro_modeloVeiculo_CadastroMotorista"></span>
+                                          <div class="row">
+                                            <div class="col-3">
+                                              <input type="number" name="anoVeiculo_CadastroMotorista" id="anoVeiculo_CadastroMotorista" placeholder="Ano"/>
+                                              <span class="msgErro" id="msgErro_anoVeiculo_CadastroMotorista"></span>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-3">
+                                              <input type="text" name="placaVeiculo_CadastroMotorista" id="placaVeiculo_CadastroMotorista" placeholder="Placa"/>
+                                              <span class="msgErro" id="msgErro_placaVeiculo_CadastroMotorista"></span>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <input type="button" name="previous" class="previous action-button-previous" value="Anterior"/>
+                                      <input type="button" name="CadastrarUsuario" class="next action-button" id="CadastrarMotorista" onclick="cadastrar_Motorista()" value="Cadastrar"/>
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title text-center">Sucesso</h2>
+                                          <br><br>
+                                          <div class="row justify-content-center">
+                                              <div class="col-3">
+                                                  <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                              </div>
+                                          </div>
+                                          <br><br>
+                                          <div class="row justify-content-center">
+                                              <div class="col-7 text-center">
+                                                  <h5>Seu cadastro está completo!</h5>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </fieldset>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </main>
+    <footer id="rodapeCadastro">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <center>
+              <p style="font-size: 13px;" id="Copyright">Copyright - Todos os direitos reservados a Van Connect</p>
+            </center>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <script src="assets/js/dados_cadastro.js"></script>
+    <script src="assets/js/cadastro.js"></script>
+    <script src="assets/js/validarCamposCadastro.js"></script>
+    <script src="assets/vendor/jquery/jquery.mask.js"></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperação de Senha</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+html, body {
+  margin: 0;
+}
+
+footer {
+  background-color: #FECC49 !important;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+header {
+  background-color: #FECC49 !important;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-content {
+  width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 130px; 
+}
+
+#Copyright {
+  margin-top: 12px !important;
+}
+</style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md">
+      <div class="container-fluid">
+        <img src="assets/img/logo.png" alt="Logomarca Vans Connect" width="60px" height="60px">
+      </div>
+    </nav>
+  </header>
+
+  <div class="card-container">
+    <div class="card-content">
+      <h1 class="text-center">Recuperação de Senha</h1>
+      <p class="text-center">Digite seu email e nova senha</p>
+
+      <form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label for="novaSenha">Nova Senha</label>
+          <input type="password" class="form-control" id="novaSenha" placeholder="Nova Senha">
+        </div>
+        <button type="button" class="btn btn-warning btn-block" onclick="recuperarSenha()">Recuperar Senha</button> 
+      </form>
+    </div>
+  </div>
+
+  <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <center>
+                        <p style="font-size: 13px;" id="Copyright">Copyright - Todos os direitos reservados a Van Connect</p>
+                    </center>
+                </div>
+            </div>
+        </div>
+  </footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+function recuperarSenha() {
+  const email     = document.getElementById('email').value;
+  const novaSenha = document.getElementById('novaSenha').value;
+
+  // Verificar se o email e a nova senha foram fornecidos
+  if (!email || !novaSenha) {
+    alert('Por favor, insira seu email e nova senha.');
+    return;
+  }
+
+  let listaUser = [];
+
+  let listaDriver = [];
+
+  listaUser   = JSON.parse(localStorage.getItem('listaUser'))
+  listaDriver = JSON.parse(localStorage.getItem('listaDriver'))
+
+  if ( (listaUser) || (listaDriver) ) {
+      
+    const userIndex = listaUser.findIndex(user => user.emailCad === email);
+    const driverIndex = listaDriver.findIndex(driver => driver.emailCad === email);
+    
+    if (userIndex !== -1) {
+
+        listaUser[userIndex].senhaCad = novaSenha;
+        
+        const listaUserAtualizada = JSON.stringify(listaUser);
+        
+        localStorage.setItem('listaUser', listaUserAtualizada);
+        
+        alert('Senha atualizada com sucesso!');
+        window.location.href = 'index.html';
+    } 
+    else if (driverIndex !== -1) {
+
+            listaDriver[driverIndex].senhaCad = novaSenha;
+            
+            const listaDriverAtualizada = JSON.stringify(listaDriver);
+            
+            localStorage.setItem('listaDriver', listaDriverAtualizada);
+            
+            alert('Senha atualizada com sucesso!');
+            window.location.href = 'index.html';
+
+    }
+    else{
+       alert('Nenhum cadastro encontrado com este email.');
+    } 
+  }
+  else {
+        alert('Nenhum cadastro encontrado com este email.');
+  }
+}
+
+</script>
+</body>
+</html>

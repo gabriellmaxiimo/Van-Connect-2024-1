@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 60%;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.motorista {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.motorista img {
+    max-width: 100%;
+    height: auto;
+}
+
+.avaliacao {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.avaliacao:last-child {
+    border-bottom: none;
+}
+
+.estrelas {
+    color: #f5c518;
+    margin-bottom: 5px;
+}
+
+.comentario {
+    color: #555;
+}
+
+#botao-principal {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #FECC49;
+    color: rgb(11, 11, 11);
+    border: none;
+    border-radius: 5px;
+}
+
+#form-avaliacao {
+    margin: 20px 0;
+}
+
+#form-avaliacao h2 {
+    text-align: center;
+    color: #333;
+}
+
+#form-avaliacao label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#form-avaliacao select,
+#form-avaliacao button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#form-avaliacao textarea {
+    width: 97.7%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#form-avaliacao button {
+    background-color: #FECC49;
+    color: rgb(11, 11, 11);
+    border: none;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #FECC49 !important;
+    position: static;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+
+header {
+    background-color: #FECC49 !important;
+}
+
+
+#Copyright {
+    margin-top: 12px !important;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    transform: translateY(80%);
+}
+
+#media-avaliacoes {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#media-avaliacoes h2 {
+    font-size: 24px;
+    color: #333;
+}

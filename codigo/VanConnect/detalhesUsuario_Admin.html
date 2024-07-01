@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Detalhes Usuário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .container {
+            background-color: white;
+            width: 60%;
+            max-width: 800px;
+            min-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .header {
+            margin-left: -12.3px;
+            background-color: #FECC49;
+            padding: 10px;
+            text-align: left;
+            position: relative;
+            width: 120%;
+            max-width: 800px;
+            min-width: 300px;
+            border: 0;
+        }
+        .header #voltar {
+            height: 20px;
+            font-size: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .header h1 {
+            display: inline-block;
+            margin: 0;
+            font-size: 18px;
+            margin-left: 240px;
+            vertical-align: middle;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .content img {
+            width: 180px;
+            height: auto;
+        }
+        .details {
+            text-align: left;
+            margin-bottom: -90px;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+        .contact {
+            margin: 20px 0;
+        }
+        .contact .iconContact {
+            width: 25px;
+            height: auto;
+            margin: 0 10px;
+            color: black !important;
+            cursor: pointer;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container button {
+            background-color: #FECC49;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .back-arrow {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="carregarDados()">
+    <header>
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <img src="assets/img/logo.png" alt="Logomarca Vans Connect" width="60px" height="60px">
+            </div>
+        </nav>
+    </header><br>
+    <main>
+        <div class="container">
+            <div class="header">
+                <!-- <img src="https://via.placeholder.com/20" alt="Icon"> -->
+                <a id="voltar"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                <h1>Detalhes Usuário</h1>
+                <!-- <img src="https://via.placeholder.com/20" alt="Back" class="back-arrow"> -->
+            </div>
+            <div class="content">
+                <div class="details">
+                    <b>Nome: &nbsp</b><b id="nome"></b><br>
+                    <b>Telefone: &nbsp</b><b id="telefone"></b><br>
+                    <b>Email: &nbsp</b><b id="email"></b><br>
+                </div>
+                <img src="assets/img/usuarios.png" alt="School Bus">
+                <div class="contact">
+                    <p>Entrar em contato</p>
+                    <a href="https://web.whatsapp.com/" target="_blank" id="whatsappIcon" class="iconContact" style="text-align: left;"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                    <a id="telefoneIcon" class="iconContact" style="text-align: right;"><i class="fa fa-phone" aria-hidden="true" onclick="CopiaNumeroTelefone()"></i></a>
+                </div>
+                <div class="button-container">
+                    <button onclick="Excluir()" style="background-color: red !important;">Excluir Usuário</button>
+                </div><br>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <center>
+                        <p style="font-size: 15px;" id="Copyright">Copyright - Todos os direitos reservados a Van Connect</p>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        function CopiaNumeroTelefone(){
+         // Seleciona o elemento <p> que contém o texto a ser copiado
+         var textoElemento = document.getElementById('telefone');
+
+         // Cria um elemento de texto temporário para copiar o conteúdo
+         var elementoTemporario = document.createElement('textarea');
+         elementoTemporario.value = textoElemento.textContent;
+
+         // Adiciona o elemento temporário ao corpo do documento
+         document.body.appendChild(elementoTemporario);
+
+         // Seleciona o conteúdo do elemento de texto temporário
+         elementoTemporario.select();
+         elementoTemporario.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+         // Executa o comando de cópia
+         document.execCommand('copy');
+
+         // Remove o elemento temporário
+         document.body.removeChild(elementoTemporario);
+
+         // Feedback para o usuário
+         Swal.fire({
+                text: 'Telefone copiado',
+                icon: 'success',
+                showCancelButton: false
+            })
+        }
+
+        // Função para obter o valor de um parâmetro da URL
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        // Obter o ID do user da URL
+        const userId = getParameterByName('id'); 
+
+        function carregarDados(){
+  
+            let id         = userId;
+            let nome       = document.querySelector('#nome');
+            let telefone   = document.querySelector('#telefone');
+            let email      = document.querySelector('#email');
+
+            let listaUser= [];
+
+            listaUser = JSON.parse(localStorage.getItem('listaUser'))
+
+            listaUser.forEach((item) => {
+              if ( (id == item.idCad) ){
+                 nome.innerHTML = item.nomeCad;
+                 telefone.innerHTML = item.telefoneCad;
+                 email.innerHTML = item.emailCad;
+              }
+            })
+
+        }
+
+        function Excluir() {
+            let Id = getParameterByName('id'); 
+            let listaUser = JSON.parse(localStorage.getItem('listaUser')) || [];
+
+            // Encontrar o índice do usuario com o ID correspondente
+            const index = listaUser.findIndex(user => user.idCad === parseInt(Id));
+
+            if (index !== -1) {
+                // Remover o usuario do array
+                listaUser.splice(index, 1);
+
+                // Atualizar o localStorage com o array atualizado
+                localStorage.setItem('listaUser', JSON.stringify(listaUser));
+
+                window.history.back();
+            } else {
+                alert('Usuário não encontrado.');
+            }
+        }
+
+        document.querySelector('#voltar').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

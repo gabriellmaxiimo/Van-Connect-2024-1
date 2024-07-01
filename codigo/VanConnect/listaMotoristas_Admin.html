@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Vans Connect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pesquisaMotorista.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .card-img-top {
+            height: 80%; 
+            object-fit: cover; 
+        }
+        #driver-list{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+    </style>
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid" id="Menu">
+      <img src="assets/img/logo.png" alt="Logomarca Vans Connect" width="60px" height="60px">
+    </div>
+  </nav>
+</header>
+<div class="header">
+    <button style="text-align: left;" id="VerListaUsers" onclick="paginaListaUsuariosAdmin()">Ver Lista de Usuáiros</button>
+    <img src="assets/img/logo.png" alt="logo" width="100" height="auto">
+    <input type="text" id="searchInput" placeholder="Digite sua pesquisa...">
+    <button id="searchButton">
+        <i class="fas fa-search" style="color: #eeeeee;"></i> 
+    </button>
+    
+</div>
+<div class="wrapper">
+    <div class="container mt-5" id="driver-list">
+        <!-- <div class="row" >
+            Card dinâmico de motoristas
+        </div> -->
+    </div>
+</div>
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <center>
+                    <p style="font-size: 15px;" id="Copyright">Copyright - Todos os direitos reservados a Van Connect</p>
+                </center>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Recuperar dados do localStorage
+    const listaDriver = JSON.parse(localStorage.getItem('listaDriver')) || [];
+
+    // Função para obter o valor de um parâmetro da URL
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+    // Obter o ID do user da URL
+    const userId = getParameterByName('id'); 
+
+    // Função para criar os cards
+    function createDriverCard(driver) {
+        return `
+            <div class="col-md-11">
+                <a href="detalhesMotorista_Admin.html?id=${driver.idCad}" class="text-decoration-none text-dark">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <img src="assets/img/motoristas.png" class="img-fluid card-img-top" alt="Motoristas">
+                            <h5 class="card-title">ID: ${driver.idCad}</h5>
+                            <p class="card-text">Nome: ${driver.nomeCad}</p>
+                            <p class="card-text">Email: ${driver.emailCad}</p>
+                            <p class="card-text">Telefone: ${driver.telefoneCad}</p>
+                            <p class="card-text">Bairro: ${driver.bairroCad}</p>
+                            <p class="card-text">Modelo do Veículo: ${driver.modeloVeiculoCad}</p>
+                            <p class="card-text">Placa do Veículo: ${driver.placaVeiculoCad}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
+    }
+
+    function paginaListaUsuariosAdmin(){
+        window.location.href = "listaUsuarios_Admin.html?id=" + userId;
+    }
+
+    // Função para renderizar os cards
+    function renderDriverCards(filteredDrivers = listaDriver) {
+        const driverListElement = document.getElementById('driver-list');
+        driverListElement.innerHTML = ''; // Limpa a lista antes de renderizar
+        filteredDrivers.forEach(driver => {
+            driverListElement.insertAdjacentHTML('beforeend', createDriverCard(driver));
+        });
+    }
+
+
+    // Função de busca
+    function search() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const filteredDrivers = listaDriver.filter(driver => {
+            return driver.nomeCad.toLowerCase().includes(searchInput) ||
+                   driver.emailCad.toLowerCase().includes(searchInput) ||
+                   driver.telefoneCad.toLowerCase().includes(searchInput) ||
+                   driver.bairroCad.toLowerCase().includes(searchInput) ||
+                   driver.modeloVeiculoCad.toLowerCase().includes(searchInput) ||
+                   driver.placaVeiculoCad.toLowerCase().includes(searchInput);
+        });
+        renderDriverCards(filteredDrivers);
+    }
+
+    // Adicionar evento de clique ao botão de busca
+    document.getElementById('searchButton').addEventListener('click', search);
+
+    renderDriverCards();
+</script>
+
+</body>
+</html>

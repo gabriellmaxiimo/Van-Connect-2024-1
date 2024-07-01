@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliar Motorista</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/css/styleAvaliacaoDosUsuarios.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+                <img src="assets/img/logo.png" alt="Logomarca Vans Connect" width="60px" height="60px">
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <a id="voltar"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        <h1>Motorista 1 - Avaliações dos Usuários</h1>
+        <div class="motorista">
+            <img id="motorista" src="assets/img/motoristas.png" alt="Motorista">
+        </div>
+
+        <div id="media-avaliacoes">
+            <!-- <h2>Média das Avaliações: <span id="media-nota">N/A</span> <small>/ 5</small></h2> -->
+        </div>
+
+        <div id="avaliacoes"></div>
+        <form id="form-avaliacao">
+            <h2>Adicionar Avaliação</h2>
+            <label for="nota">Nota:</label>
+            <select id="nota" required>
+                <option value="1">1 estrela</option>
+                <option value="2">2 estrelas</option>
+                <option value="3">3 estrelas</option>
+                <option value="4">4 estrelas</option>
+                <option value="5">5 estrelas</option>
+            </select>
+            <label for="comentario">Comentário:</label>
+            <textarea id="comentario" rows="4" required></textarea>
+            <button type="submit">Adicionar Avaliação</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <center>
+                        <p style="font-size: 13px;" id="Copyright">Copyright - Todos os direitos reservados a Van
+                            Connect</p>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        // Função para obter o valor de um parâmetro da URL
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Obter o ID do avaliado da URL
+        const idAvaliado = getParameterByName('id');
+
+        // Função para carregar e exibir avaliações
+        function loadAvaliacoes() {
+            const avaliacoes = JSON.parse(localStorage.getItem('Avaliacoes')) || [];
+            const avaliacoesDiv = document.getElementById('avaliacoes');
+            avaliacoesDiv.innerHTML = '';
+
+            avaliacoes.filter(avaliacao => avaliacao.idAvaliado === idAvaliado).forEach(avaliacao => {
+                const avaliacaoElement = document.createElement('div');
+                avaliacaoElement.className = 'avaliacao';
+                avaliacaoElement.innerHTML = `
+                    <p>Nota: ${avaliacao.NumEstrelas} estrelas</p>
+                    <p>Comentário: ${avaliacao.Comentario}</p>
+                `;
+                avaliacoesDiv.appendChild(avaliacaoElement);
+            });
+
+            // Calcular e exibir a média das avaliações
+            const mediaNota = avaliacoes.filter(avaliacao => avaliacao.idAvaliado === idAvaliado)
+                .reduce((total, avaliacao) => total + parseInt(avaliacao.NumEstrelas, 10), 0) / avaliacoes.filter(avaliacao => avaliacao.idAvaliado === idAvaliado).length || 0;
+
+            document.getElementById('media-avaliacoes').innerHTML = `
+                <h2>Média das Avaliações: <span id="media-nota">${mediaNota.toFixed(1)}</span> <small>/ 5</small></h2>
+            `;
+        }
+
+        // Carregar avaliações ao carregar a página
+        document.addEventListener('DOMContentLoaded', loadAvaliacoes);
+
+        // Evento de Envio do Formulário
+        document.getElementById('form-avaliacao').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Obter os valores do formulário
+            const numEstrelas = document.getElementById('nota').value;
+            const comentario = document.getElementById('comentario').value;
+
+            // Criar a nova avaliação
+            const novaAvaliacao = {
+                idAvaliado: idAvaliado,
+                NumEstrelas: numEstrelas,
+                Comentario: comentario
+            };
+
+            // Recuperar o array de avaliações do localStorage
+            const avaliacoes = JSON.parse(localStorage.getItem('Avaliacoes')) || [];
+
+            // Adicionar a nova avaliação ao array
+            avaliacoes.push(novaAvaliacao);
+
+            // Salvar o array atualizado de volta no localStorage
+            localStorage.setItem('Avaliacoes', JSON.stringify(avaliacoes));
+
+            // Informar o usuário que a avaliação foi adicionada com sucesso
+            Swal.fire({
+                title: 'Sucesso!',
+                text: 'Avaliação adicionada com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+
+            // Limpar o formulário
+            document.getElementById('form-avaliacao').reset();
+
+            // Recarregar as avaliações
+            loadAvaliacoes();
+        });
+
+        // Evento de clique no botão de voltar
+        document.querySelector('#voltar').addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
+</body>
+
+</html>
